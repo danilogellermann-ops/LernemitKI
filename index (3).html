@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LernemitKI – Gesund & Vital ab 40</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #1a9e75;
+    --green-light: #e1f5ee;
+    --green-dark: #0f6e56;
+    --amber: #f5a623;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --radius: 18px;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 16px 60px;
+    background: #0d5c45;
+    background-image:
+      radial-gradient(ellipse at 10% 10%, rgba(26,158,117,0.8) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 90%, rgba(245,166,35,0.3) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(15,110,86,0.5) 0%, transparent 70%);
+  }
+  .page { width: 100%; max-width: 420px; }
+  .header { text-align: center; margin-bottom: 28px; animation: fadeUp 0.5s ease both; }
+  .avatar-ring {
+    display: inline-block;
+    padding: 3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff, var(--amber));
+    margin-bottom: 14px;
+  }
+  .avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+    border: 3px solid #0d5c45;
+  }
+  .name { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .tagline { font-size: 14px; color: rgba(255,255,255,0.78); margin-top: 6px; line-height: 1.5; max-width: 300px; margin-left: auto; margin-right: auto; }
+  .sub-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.15);
+    color: #fff; font-size: 12px; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px; margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .sub-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); display: inline-block; }
+  .section-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 14px; }
+  .btn {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 15px 18px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.97);
+    margin-bottom: 10px; text-decoration: none; position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    animation: fadeUp 0.5s ease both;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .btn:active { transform: scale(0.98); }
+  .btn-top { border: 2px solid var(--amber); }
+  .hot-badge {
+    position: absolute; top: -10px; right: 16px;
+    background: var(--amber); color: #fff;
+    font-size: 10px; font-weight: 800;
+    padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .btn-left { display: flex; align-items: center; gap: 13px; }
+  .btn-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .btn-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .btn-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .btn-price { font-size: 14px; font-weight: 800; color: var(--green-dark); flex-shrink: 0; margin-left: 8px; }
+  .btn:nth-child(1) { animation-delay: 0.1s; }
+  .btn:nth-child(2) { animation-delay: 0.15s; }
+  .btn:nth-child(3) { animation-delay: 0.2s; }
+  .btn:nth-child(4) { animation-delay: 0.25s; }
+  .btn:nth-child(5) { animation-delay: 0.3s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .divider { height: 1px; background: rgba(255,255,255,0.15); margin: 24px 0; }
+  .footer { text-align: center; animation: fadeUp 0.5s 0.4s ease both; }
+  .footer-text { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+  .yt-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 700; color: #fff;
+    padding: 8px 20px; border-radius: 20px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    background: rgba(204,0,0,0.75); text-decoration: none;
+    transition: background 0.15s;
+  }
+  .yt-btn:hover { background: #cc0000; }
+  .yt-icon { width: 16px; height: 16px; fill: #fff; }
+  .footer-copy { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="avatar-ring">
+      <img class="avatar" src="maskottchen.png" alt="LernemitKI" />
+    </div>
+    <div class="name">LernemitKI</div>
+    <div class="tagline">Gesund, schlank & vital – smarte Strategien für Menschen ab 40 🥜💪</div>
+    <span class="sub-badge">25.000+ Abonnenten auf YouTube</span>
+  </div>
+
+  <div class="section-label">Meine Empfehlungen für dich</div>
+
+  <a class="btn btn-top" href="https://www.checkout-ds24.com/redir/559777/danilobusnissgellermb8ed/" target="_blank">
+    <span class="hot-badge">Bestseller</span>
+    <div class="btn-left">
+      <div class="btn-icon" style="background:#fef3e2;">📖</div>
+      <div>
+        <div class="btn-title">600 Kochrezepte</div>
+        <div class="btn-sub">988 Seiten – für jeden Geschmack</div>
+      </div>
+    </div>
+    <span class="btn-price">21 €</span>
+  </a>
+
+  <a class="btn" href="https://bauchfettkiller.com/bauchfettkiller#aff=danilobusnissgellermb8ed" target="_blank">
+    <div class="btn-left">
+      <div class="btn-icon" style="background:#e1f5ee;">🔥</div>
+      <div>
+        <div class="btn-title">Bauchfett-Killer 40+</div>
+        <div class="btn-sub">In 3 Wochen zu sichtbaren Erfolgen</div>
+      </div>
+    </div>
+    <span class="btn-price">149 €</span>
+  </a>
+
+  <a class="btn" href="https://www.fabiankowallikacademy.de/start/eat-clean-or-die-der-video-kochkurs/#aff=danilobusnissgellermb8ed" target="_blank">
+    <div class="btn-left">
+      <div class="btn-icon" style="background:#faece7;">🍽️</div>
+      <div>
+        <div class="btn-title">Eat Clean or Die</div>
+        <div class="btn-sub">Video-Kochkurs – gesund & lecker</div>
+      </div>
+    </div>
+    <span class="btn-price">59 €</span>
+  </a>
+
+  <a class="btn" href="https://bauchfettkiller.com/intervallfasten#aff=danilobusnissgellermb8ed" target="_blank">
+    <div class="btn-left">
+      <div class="btn-icon" style="background:#e6f1fb;">⏱️</div>
+      <div>
+        <div class="btn-title">Intervallfasten Guide</div>
+        <div class="btn-sub">Einfach starten, Ergebnisse sehen</div>
+      </div>
+    </div>
+    <span class="btn-price">19 €</span>
+  </a>
+
+  <a class="btn" href="https://www.checkout-ds24.com/redir/665463/danilobusnissgellermb8ed/" target="_blank">
+    <div class="btn-left">
+      <div class="btn-icon" style="background:#eaf3de;">💪</div>
+      <div>
+        <div class="btn-title">Der Vitalitäts-Guide</div>
+        <div class="btn-sub">Dein Körper. Dein Zuhause.</div>
+      </div>
+    </div>
+    <span class="btn-price">→</span>
+  </a>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <div class="footer-text">Täglich neue Tipps auf YouTube 👇</div>
+    <a class="yt-btn" href="https://www.youtube.com/@LernemitKI" target="_blank">
+      <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      @LernemitKI
+    </a>
+    <div class="footer-copy">© 2026 LernemitKI · Alle Angaben ohne Gewähr</div>
+  </div>
+</div>
+</body>
+</html>
